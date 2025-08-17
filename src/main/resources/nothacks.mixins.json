@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.darragh.eamfhc.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "nothacks.refmap.json",
+  "client": [
+    "MixinMinecraft",
+    "fml.MixinC2SModListReply"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

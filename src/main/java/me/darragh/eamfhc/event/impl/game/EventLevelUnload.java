@@ -7,6 +7,9 @@ import me.darragh.eamfhc.event.ClientEvent;
 /**
  * Called upon world unload.
  *
+ * @see me.darragh.eamfhc.processor.impl.forge.EventWrapperProcessor
+ * @see net.minecraftforge.event.level.LevelEvent.Unload
+ *
  * @author darraghd493
  */
 @Getter

@@ -1,30 +1,42 @@
 package me.darragh.eamfhc.type;
 
+import com.google.gson.JsonObject;
+import lombok.Getter;
+import me.darragh.eamfhc.Serialisable;
+
 /**
  * A Range class that represents a range of numbers.
  * It is generic and can handle any subclass of Number.
  *
- * @param <T> The type of the numbers in the range, must extend Number.
+ * @param <T> The type of the numbers in the range, must extend {@link Number}.
  *
  * @author darraghd493
  */
-public class Range<T extends Number> {
+@SuppressWarnings("ClassCanBeRecord")
+@Getter
+public class Range<T extends Number> implements Serialisable {
     private final T from, to;
 
     public Range(T from, T to) {
-        this.from = from;
-        this.to = to;
+        this.from = from.doubleValue() < to.doubleValue() ? to : from;
+        this.to = to.doubleValue() < from.doubleValue() ? from : to;
     }
 
+    @SuppressWarnings("unchecked")
     public Class<T> type() {
         return (Class<T>) this.from.getClass();
     }
 
-    public T getFrom() {
-        return this.from.doubleValue() < this.to.doubleValue() ? this.from : this.to;
+    @Override
+    public JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        json.addProperty("from", this.getFrom());
+        json.addProperty("to", this.getTo());
+        return json;
     }
 
-    public T getTo() {
-        return this.from.doubleValue() < this.to.doubleValue() ? this.to : this.from;
+    @Override
+    public void fromJson(JsonObject json) {
+        throw new UnsupportedOperationException("fromJson is not supported for Range");
     }
 }

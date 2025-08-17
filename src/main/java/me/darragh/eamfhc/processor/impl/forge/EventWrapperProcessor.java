@@ -3,10 +3,14 @@ package me.darragh.eamfhc.processor.impl.forge;
 import me.darragh.eamfhc.event.impl.game.EventLevelLoad;
 import me.darragh.eamfhc.event.impl.game.EventLevelUnload;
 import me.darragh.eamfhc.event.impl.input.EventKeyInput;
+import me.darragh.eamfhc.event.impl.render.EventRenderLevelStage;
+import me.darragh.eamfhc.event.impl.render.EventRenderOverlay;
 import me.darragh.eamfhc.processor.Processor;
 import me.darragh.eamfhc.processor.ProcessorIdentifier;
 import me.darragh.eamfhc.processor.ProcessorType;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,16 +42,13 @@ public class EventWrapperProcessor extends Processor {
     }
 
     @SubscribeEvent
-    public void onKeyInputEvent(InputEvent.Key event) {
-        EventKeyInput clientEvent = new EventKeyInput(
+    public void onKeyInputEvent(InputEvent.Key event) { // TODO: Shift to earlier handling - maybe use mixins?
+        new EventKeyInput(
                 event.getKey(),
                 event.getScanCode(),
                 event.getAction(),
                 event.getModifiers()
         ).post();
-        if (clientEvent.isCancelled()) {
-            event.setCanceled(true);
-        }
     }
 
     @SubscribeEvent
@@ -58,5 +59,29 @@ public class EventWrapperProcessor extends Processor {
     @SubscribeEvent
     public void onLevelUnload(LevelEvent.Unload event) {
         new EventLevelUnload().post();
+    }
+
+    @SubscribeEvent
+    public void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
+        new EventRenderOverlay(
+                event.getWindow(),
+                event.getGuiGraphics(),
+                event.getPartialTick(),
+                event.getOverlay()
+        ).post();
+    }
+
+    @SubscribeEvent
+    public void onRenderLevelLast(RenderLevelStageEvent event) {
+        new EventRenderLevelStage(
+                event.getStage(),
+                event.getLevelRenderer(),
+                event.getPoseStack(),
+                event.getProjectionMatrix(),
+                event.getRenderTick(),
+                event.getPartialTick(),
+                event.getCamera(),
+                event.getFrustum()
+        ).post();
     }
 }

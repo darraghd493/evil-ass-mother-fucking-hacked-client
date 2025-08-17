@@ -1,8 +1,8 @@
 package me.darragh.eamfhc.service;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,8 +12,8 @@ import java.util.Map;
  */
 @Slf4j
 public class ServiceRepository {
-    private static final Map<String, Service> SERVICES = new HashMap<>();
-    private static final Map<Class<? extends Service>, Service> SERVICES_2_CLASS = new HashMap<>();
+    private static final Map<String, Service> SERVICES = new Object2ObjectOpenHashMap<>();
+    private static final Map<Class<? extends Service>, Service> SERVICES_2_CLASS = new Object2ObjectOpenHashMap<>();
 
     /**
      * Registers a service in the repository.

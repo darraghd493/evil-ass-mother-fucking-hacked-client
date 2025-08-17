@@ -1,11 +1,11 @@
 package me.darragh.eamfhc.feature;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import me.darragh.eamfhc.service.ServiceRepository;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +21,8 @@ import java.util.Map;
 // TODO: Cleaner type safety
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class SimpleFeatureRepositoryService<F extends Feature<M>, M extends FeatureMetadata> implements FeatureRepositoryService<F, M> {
-    private final Map<String, F> features = new HashMap<>();
-    private final Map<Class<? extends F>, F> featureClasses = new HashMap<>();
+    private final Map<String, F> features = new Object2ObjectOpenHashMap<>();
+    private final Map<Class<? extends F>, F> featureClasses = new Object2ObjectOpenHashMap<>();
     private final Initialiser<F, M> initialiser;
 
     @Override

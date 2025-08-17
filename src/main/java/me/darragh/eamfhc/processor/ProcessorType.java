@@ -6,6 +6,7 @@ package me.darragh.eamfhc.processor;
  * @author darraghd493
  */
 public enum ProcessorType {
+    CLIENT,
     FORGE,
     GAME
 }

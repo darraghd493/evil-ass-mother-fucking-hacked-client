@@ -2,6 +2,7 @@ package me.darragh.eamfhc.processor;
 
 import lombok.Getter;
 import me.darragh.eamfhc.Client;
+import me.darragh.eamfhc.GameInstance;
 import me.darragh.eamfhc.feature.Feature;
 
 /**
@@ -9,7 +10,7 @@ import me.darragh.eamfhc.feature.Feature;
  *
  * @author darragh
  */
-public class Processor implements Feature<ProcessorMetadata> {
+public class Processor implements Feature<ProcessorMetadata>, GameInstance {
     @Getter // Undocumented method
     private final ProcessorIdentifier identifier;
     private final ProcessorMetadata metadata;

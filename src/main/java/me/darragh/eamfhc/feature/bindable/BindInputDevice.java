@@ -12,6 +12,7 @@ import me.darragh.eamfhc.Identifiable;
 @Getter
 @RequiredArgsConstructor
 public enum BindInputDevice implements Identifiable { // TODO: Mouse support
+    MOUSE("mouse"),
     KEYBOARD("keyboard");
 
     private final String identifier;

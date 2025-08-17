@@ -3,6 +3,7 @@ package me.darragh.eamfhc.processor.impl.forge;
 import me.darragh.eamfhc.event.impl.game.EventLevelLoad;
 import me.darragh.eamfhc.event.impl.game.EventLevelUnload;
 import me.darragh.eamfhc.event.impl.input.EventKeyInput;
+import me.darragh.eamfhc.event.impl.input.EventMouseInput;
 import me.darragh.eamfhc.event.impl.render.EventRenderLevelStage;
 import me.darragh.eamfhc.event.impl.render.EventRenderOverlay;
 import me.darragh.eamfhc.processor.Processor;
@@ -25,7 +26,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 @ProcessorIdentifier(
         identifier = "event-wrapper",
         displayName = "Event Wrapper",
-        description = "A processor that wraps Forge events to allow for easier handling and processing.",
+        description = "Wraps Forge events to allow for easier handling and processing.",
         type = ProcessorType.FORGE
 )
 public class EventWrapperProcessor extends Processor {
@@ -42,14 +43,26 @@ public class EventWrapperProcessor extends Processor {
     }
 
     @SubscribeEvent
-    public void onKeyInputEvent(InputEvent.Key event) { // TODO: Shift to earlier handling - maybe use mixins?
-        new EventKeyInput(
-                event.getKey(),
-                event.getScanCode(),
+    public void onMouseButtonInputEvent(InputEvent.MouseButton.Pre event) {
+        EventMouseInput clientEvent = new EventMouseInput(
+                event.getButton(),
                 event.getAction(),
                 event.getModifiers()
         ).post();
+        if (clientEvent.isCancelled()) {
+            event.setCanceled(true);
+        }
     }
+
+//    @SubscribeEvent
+//    public void onKeyInputEvent(InputEvent.Key event) { // TODO: Shift to earlier handling - maybe use mixins?
+//        new EventKeyInput(
+//                event.getKey(),
+//                event.getScanCode(),
+//                event.getAction(),
+//                event.getModifiers()
+//        ).post();
+//    }
 
     @SubscribeEvent
     public void onLevelUnload(LevelEvent.Load event) {

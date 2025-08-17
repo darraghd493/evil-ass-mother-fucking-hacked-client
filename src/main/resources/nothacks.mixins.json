@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "nothacks.refmap.json",
   "client": [
+    "MixinKeyboardHandler",
     "MixinMinecraft",
     "fml.MixinC2SModListReply"
   ],

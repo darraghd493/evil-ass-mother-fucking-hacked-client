@@ -44,4 +44,11 @@ public @interface ModuleIdentifier {
      * @return The module type.
      */
     ModuleType type();
+
+    /**
+     * The default keyboard keybind for the module.
+     *
+     * @return The default keyboard keybind keycode.
+     */
+    int defaultKeybind() default -1;
 }

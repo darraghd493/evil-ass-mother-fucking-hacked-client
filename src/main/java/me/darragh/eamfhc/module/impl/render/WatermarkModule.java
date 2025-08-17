@@ -2,6 +2,7 @@ package me.darragh.eamfhc.module.impl.render;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import me.darragh.eamfhc.event.impl.render.EventRenderOverlay;
 import me.darragh.eamfhc.feature.property.PropertyEnum;
 import me.darragh.eamfhc.feature.property.PropertyFactory;
 import me.darragh.eamfhc.feature.property.PropertyMetadata;
@@ -9,6 +10,11 @@ import me.darragh.eamfhc.feature.property.type.enumerable.EnumProperty;
 import me.darragh.eamfhc.module.Module;
 import me.darragh.eamfhc.module.ModuleIdentifier;
 import me.darragh.eamfhc.module.ModuleType;
+import me.darragh.eamfhc.util.FontHandler;
+import me.darragh.event.bus.Listener;
+import net.minecraft.client.gui.GuiGraphics;
+
+import java.awt.*;
 
 /**
  * A module that displays a watermark on the screen.
@@ -21,13 +27,24 @@ import me.darragh.eamfhc.module.ModuleType;
         description = "Displays a devilish watermark on the screen.",
         type = ModuleType.RENDER
 )
-public class Watermark extends Module {
+public class WatermarkModule extends Module {
     private final EnumProperty<ModeEnum> mode = PropertyFactory.enumPropertyBuilder(this, ModeEnum.class)
             .metadata(new PropertyMetadata("mode", "Mode"))
             .defaultValue(ModeEnum.GOOD_WATERMARK)
             .build();
 
-    // TODO: Render
+    @Listener
+    public void onRenderOverlay(EventRenderOverlay event) {
+        GuiGraphics guiGraphics = event.getGuiGraphics();
+        switch (this.mode.getValue()) {
+            case GOOD_WATERMARK -> {}
+            case EVIL_WATERMARK -> {}
+            case TEXT -> {
+                FontHandler.draw("evil ass mother fucking hacked client", 2.0F, 2.0F, Color.PINK.getRGB(), true, guiGraphics, guiGraphics.pose(), guiGraphics.bufferSource());
+                FontHandler.draw("1.20.1 Forge", 2.0F, 2.0F + FontHandler.getHeight(), Color.GRAY.getRGB(), true, guiGraphics, guiGraphics.pose(), guiGraphics.bufferSource());
+            }
+        }
+    }
 
     /**
      * An enum representing the different modes of the watermark.

@@ -1,6 +1,7 @@
 package me.darragh.eamfhc;
 
 import lombok.extern.slf4j.Slf4j;
+import me.darragh.eamfhc.modlist.ModListPatcher;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -32,9 +33,12 @@ public class EntryPoint {
     }
 
     private static Runnable setupClient() {
-        //noinspection removal
-        return () -> FMLJavaModLoadingContext.get().getModEventBus().addListener(
-                (FMLClientSetupEvent event /* must be type specific */) -> Client.INSTANCE.init()
-        );
+        return () -> {
+            ModListPatcher.initPatch();
+            //noinspection removal
+            FMLJavaModLoadingContext.get().getModEventBus().addListener(
+                    (FMLClientSetupEvent event /* must be type specific */) -> Client.INSTANCE.init()
+            );
+        };
     }
 }

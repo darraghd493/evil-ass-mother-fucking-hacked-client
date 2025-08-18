@@ -33,7 +33,7 @@ public class ModuleContainer extends Container {
     private final List<ModuleButtonElement> moduleButtonElements = new ObjectArrayList<>();
     private final ModuleType moduleType;
 
-    private boolean dragging, expanded = true;
+    private boolean dragging, expanded;
     private int dragX, dragY;
 
     public ModuleContainer(ModuleType moduleType, int x, int y) {

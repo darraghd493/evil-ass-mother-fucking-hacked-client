@@ -15,7 +15,9 @@ import java.util.List;
  *
  * @author darraghd493
  */
+@SuppressWarnings("DeprecatedIsStillUsed")
 @Mixin(HandshakeMessages.C2SModListReply.class)
+@Deprecated
 public class MixinC2SModListReply {
     @Shadow
     private List<String> mods;

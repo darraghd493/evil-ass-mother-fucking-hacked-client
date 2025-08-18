@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  *
  * @author darraghd493
  */
+@SuppressWarnings("SpellCheckingInspection")
 @Mixin(KeyboardHandler.class)
 public class MixinKeyboardHandler {
     @SuppressWarnings("DiscouragedShift")

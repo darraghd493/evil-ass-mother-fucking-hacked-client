@@ -1,5 +1,6 @@
 package me.darragh.eamfhc.modlist;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import me.darragh.eamfhc.EntryPoint;
@@ -18,6 +19,11 @@ import java.util.List;
  */
 @Slf4j
 public class ModListPatcher {
+    private static final List<String> BLOCKED_IDS = new ObjectArrayList<>(new String[]{
+            EntryPoint.MOD_ID,
+            "modlistspoofer"
+    });
+
     private static boolean patched = false;
 
     public static void initPatch() {
@@ -60,7 +66,7 @@ public class ModListPatcher {
 
             modFiles.removeIf(modFileInfo ->
                     modFileInfo.getMods().stream()
-                            .anyMatch(modInfo -> modInfo.getModId().equals(EntryPoint.MOD_ID))
+                            .anyMatch(modInfo -> BLOCKED_IDS.contains(modInfo.getModId()))
             );
             sortedList.removeIf(modInfo ->
                     modInfo.getModId().equals(EntryPoint.MOD_ID)

@@ -44,7 +44,7 @@ public class NumberRangePropertyElement<T extends Number> extends PropertyElemen
         guiGraphics.fill(
                 (int) (this.x + this.width * progressFrom), this.y + HEIGHT - 1,
                 (int) (this.x + this.width * progressTo), this.y + HEIGHT,
-                0xFF000000 // Background colour
+                0xFF0000FF // Background colour
         );
         guiGraphics.drawString(
                 minecraft.font,
@@ -63,8 +63,8 @@ public class NumberRangePropertyElement<T extends Number> extends PropertyElemen
                     min = this.property.getConstraints().getMin().floatValue(),
                     max = this.property.getConstraints().getMax().floatValue();
 
-            float fromValue = from - min / (max - min),
-                    toValue = to - min / (max - min);
+            float fromValue = (from - min) / (max - min),
+                    toValue = (to - min) / (max - min);
             float currentValue = (float) (mouseX - this.x) / this.width;
 
             boolean side = Math.abs(fromValue - currentValue) < Math.abs(toValue - currentValue);

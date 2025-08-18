@@ -8,6 +8,7 @@ import me.darragh.eamfhc.feature.SimpleFeatureRepositoryService;
 import me.darragh.eamfhc.module.Module;
 import me.darragh.eamfhc.module.ModuleMetadata;
 import me.darragh.eamfhc.module.impl.misc.TestModule;
+import me.darragh.eamfhc.module.impl.movement.VClipModule;
 import me.darragh.eamfhc.module.impl.render.ClickGuiModule;
 import me.darragh.eamfhc.module.impl.render.WatermarkModule;
 import me.darragh.eamfhc.processor.Processor;
@@ -16,8 +17,6 @@ import me.darragh.eamfhc.processor.impl.client.BindingHandlerProcessor;
 import me.darragh.eamfhc.processor.impl.forge.EventWrapperProcessor;
 import me.darragh.event.bus.EventDispatcher;
 import me.darragh.event.bus.SimpleEventDispatcher;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The main client class for EAMFHC.
@@ -70,6 +69,7 @@ public class Client implements GameInstance, Initialisable, Destroyable {
                     service.registerFeature(new WatermarkModule());
                     service.registerFeature(new ClickGuiModule());
                     service.registerFeature(new TestModule());
+                    service.registerFeature(new VClipModule());
 
                     // Initialise all modules
                     service.getFeatures().forEach(Module::init);

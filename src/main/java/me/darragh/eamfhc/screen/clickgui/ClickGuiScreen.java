@@ -25,7 +25,7 @@ public class ClickGuiScreen extends Screen {
 
         // Initialise module containers
         for (ModuleType moduleType : ModuleType.values()) {
-            this.containers.add(new ModuleContainer(moduleType, 100 + (ModuleContainer.CONTAINER_WIDTH + 10) * this.containers.size(), 25));
+            this.containers.add(new ModuleContainer(moduleType, 25, 25 + 25 * this.containers.size()));
         }
     }
 

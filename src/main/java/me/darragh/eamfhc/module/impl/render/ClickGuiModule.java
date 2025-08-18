@@ -23,16 +23,13 @@ public class ClickGuiModule extends Module {
     private ClickGuiScreen screen;
 
     @Override
-    public void init() {
-        super.init();
-        this.screen = new ClickGuiScreen(
-                Component.literal("ClickGui")
-        );
-    }
-
-    @Override
     protected void onEnable() {
         super.onEnable();
+        if (this.screen == null) {
+            this.screen = new ClickGuiScreen(
+                    Component.literal("ClickGui")
+            );
+        }
         minecraft.setScreen(this.screen);
         this.disable();
     }

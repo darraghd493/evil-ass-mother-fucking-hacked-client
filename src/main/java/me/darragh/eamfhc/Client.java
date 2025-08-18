@@ -7,6 +7,7 @@ import me.darragh.eamfhc.feature.FeatureRepositoryService;
 import me.darragh.eamfhc.feature.SimpleFeatureRepositoryService;
 import me.darragh.eamfhc.module.Module;
 import me.darragh.eamfhc.module.ModuleMetadata;
+import me.darragh.eamfhc.module.impl.misc.TestModule;
 import me.darragh.eamfhc.module.impl.render.ClickGuiModule;
 import me.darragh.eamfhc.module.impl.render.WatermarkModule;
 import me.darragh.eamfhc.processor.Processor;
@@ -68,6 +69,7 @@ public class Client implements GameInstance, Initialisable, Destroyable {
                     // Register all modules
                     service.registerFeature(new WatermarkModule());
                     service.registerFeature(new ClickGuiModule());
+                    service.registerFeature(new TestModule());
 
                     // Initialise all modules
                     service.getFeatures().forEach(Module::init);

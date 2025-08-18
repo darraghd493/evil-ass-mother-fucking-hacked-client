@@ -6,7 +6,6 @@
   "refmap": "nothacks.refmap.json",
   "client": [
     "MixinKeyboardHandler",
-    "MixinMinecraft",
     "fml.MixinC2SModListReply"
   ],
   "injectors": {

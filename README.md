@@ -5,3 +5,4 @@
 # TODO
 
 - Decide whether to use Gson serialisation more/less
+- Represent parenting in ClickGui

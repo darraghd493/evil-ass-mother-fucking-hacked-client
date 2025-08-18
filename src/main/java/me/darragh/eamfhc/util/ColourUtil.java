@@ -24,7 +24,7 @@ public class ColourUtil {
      * @return An integer representing the RGB colour
      */
     public static int getInt(int r, int g, int b) {
-        return (r << 16) | (g << 8) | b;
+        return (255 << 24) | (r << 16) | (g << 8) | b;
     }
 
     /**

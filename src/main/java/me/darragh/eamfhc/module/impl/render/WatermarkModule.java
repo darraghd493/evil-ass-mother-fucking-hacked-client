@@ -30,15 +30,14 @@ import java.awt.*;
 public class WatermarkModule extends Module {
     private final EnumProperty<ModeEnum> mode = PropertyFactory.enumPropertyBuilder(this, ModeEnum.class)
             .metadata(new PropertyMetadata("mode", "Mode"))
-            .defaultValue(ModeEnum.GOOD_WATERMARK)
+            .defaultValue(ModeEnum.TEXT)
             .build();
 
     @Listener
     public void onRenderOverlay(EventRenderOverlay event) {
         GuiGraphics guiGraphics = event.getGuiGraphics();
+        //noinspection SwitchStatementWithTooFewBranches
         switch (this.mode.getValue()) {
-            case GOOD_WATERMARK -> {}
-            case EVIL_WATERMARK -> {}
             case TEXT -> {
                 FontHandler.draw("evil ass mother fucking hacked client", 2.0F, 2.0F, Color.PINK.getRGB(), true, guiGraphics, guiGraphics.pose(), guiGraphics.bufferSource());
                 FontHandler.draw("1.20.1 Forge", 2.0F, 2.0F + FontHandler.getHeight(), Color.GRAY.getRGB(), true, guiGraphics, guiGraphics.pose(), guiGraphics.bufferSource());
@@ -52,8 +51,6 @@ public class WatermarkModule extends Module {
     @Getter
     @RequiredArgsConstructor
     private enum ModeEnum implements PropertyEnum {
-        GOOD_WATERMARK("good", "Good"),
-        EVIL_WATERMARK("evil", "Evil"),
         TEXT("text", "Text");
 
         private final String identifier, name;

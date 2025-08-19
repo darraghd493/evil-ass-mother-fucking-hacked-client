@@ -7,6 +7,7 @@ import me.darragh.eamfhc.feature.FeatureRepositoryService;
 import me.darragh.eamfhc.feature.SimpleFeatureRepositoryService;
 import me.darragh.eamfhc.module.Module;
 import me.darragh.eamfhc.module.ModuleMetadata;
+import me.darragh.eamfhc.module.impl.exploit.BoatCrasherModule;
 import me.darragh.eamfhc.module.impl.misc.TestModule;
 import me.darragh.eamfhc.module.impl.movement.VClipModule;
 import me.darragh.eamfhc.module.impl.render.ClickGuiModule;
@@ -66,10 +67,16 @@ public class Client implements GameInstance, Initialisable, Destroyable {
                     log.info("Initialising module repository...");
 
                     // Register all modules
-                    service.registerFeature(new WatermarkModule());
-                    service.registerFeature(new ClickGuiModule());
-                    service.registerFeature(new TestModule());
+
+                    // Exploit modules
+                    service.registerFeature(new BoatCrasherModule());
+
+                    // Movement modules
                     service.registerFeature(new VClipModule());
+
+                    // Render modules
+                    service.registerFeature(new ClickGuiModule());
+                    service.registerFeature(new WatermarkModule());
 
                     // Initialise all modules
                     service.getFeatures().forEach(Module::init);

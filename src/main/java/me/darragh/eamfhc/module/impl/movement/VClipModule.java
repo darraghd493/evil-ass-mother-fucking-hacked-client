@@ -2,7 +2,7 @@ package me.darragh.eamfhc.module.impl.movement;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import me.darragh.eamfhc.event.impl.player.EventPlayerTick;
+import me.darragh.eamfhc.event.impl.player.EventPlayerPreTick;
 import me.darragh.eamfhc.feature.property.PropertyEnum;
 import me.darragh.eamfhc.feature.property.PropertyFactory;
 import me.darragh.eamfhc.feature.property.PropertyMetadata;
@@ -76,7 +76,7 @@ public class VClipModule extends Module {
     }
 
     @Listener
-    public void onPlayerTick(EventPlayerTick event) {
+    public void onPlayerPreTick(EventPlayerPreTick event) {
         if (this.instant) {
             return;
         }

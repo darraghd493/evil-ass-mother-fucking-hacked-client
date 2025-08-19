@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
         displayName = "Click Gui",
         description = "Opens the Click Gui.",
         type = ModuleType.RENDER,
-        defaultKeybind = InputConstants.KEY_RSHIFT
+        defaultKeybind = InputConstants.KEY_RCONTROL
 )
 public class ClickGuiModule extends Module {
     private ClickGuiScreen screen;

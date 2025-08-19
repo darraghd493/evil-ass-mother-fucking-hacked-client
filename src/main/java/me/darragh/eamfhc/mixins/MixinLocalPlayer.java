@@ -1,6 +1,7 @@
 package me.darragh.eamfhc.mixins;
 
-import me.darragh.eamfhc.event.impl.player.EventPlayerTick;
+import me.darragh.eamfhc.event.impl.player.EventPlayerPostTick;
+import me.darragh.eamfhc.event.impl.player.EventPlayerPreTick;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import org.spongepowered.asm.mixin.Final;
@@ -27,8 +28,17 @@ public class MixinLocalPlayer {
                     target = "Lnet/minecraft/client/player/AbstractClientPlayer;tick()V"
             )
     )
-    private void injectPlayerTick(CallbackInfo ci) {
+    private void injectPreTick(CallbackInfo ci) {
         if ((Object) this != minecraft.player) return;
-        new EventPlayerTick().post();
+        new EventPlayerPreTick().post();
+    }
+
+    @Inject(
+            method = "tick",
+            at = @At("RETURN")
+    )
+    private void injectPostTick(CallbackInfo ci) {
+        if ((Object) this != minecraft.player) return;
+        new EventPlayerPostTick().post();
     }
 }

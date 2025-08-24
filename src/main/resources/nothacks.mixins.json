@@ -12,5 +12,10 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "priority": 1000
+  "priority": 1000,
+  "mixins": [
+    "scgun.MixinGunGeneral",
+    "scgun.MixinGunRenderingHandler",
+    "scgun.MixinRecoilHandler"
+  ]
 }

@@ -7,6 +7,9 @@ import me.darragh.eamfhc.feature.FeatureRepositoryService;
 import me.darragh.eamfhc.feature.SimpleFeatureRepositoryService;
 import me.darragh.eamfhc.module.Module;
 import me.darragh.eamfhc.module.ModuleMetadata;
+import me.darragh.eamfhc.module.impl.combat.AntiRecoilModule;
+import me.darragh.eamfhc.module.impl.combat.RageBotModule;
+import me.darragh.eamfhc.module.impl.combat.ReduceSpreadModule;
 import me.darragh.eamfhc.module.impl.exploit.BoatCrasherModule;
 import me.darragh.eamfhc.module.impl.misc.TestModule;
 import me.darragh.eamfhc.module.impl.movement.VClipModule;
@@ -67,6 +70,11 @@ public class Client implements GameInstance, Initialisable, Destroyable {
                     log.info("Initialising module repository...");
 
                     // Register all modules
+
+                    // Combat modules
+                    service.registerFeature(new AntiRecoilModule());
+                    service.registerFeature(new RageBotModule());
+                    service.registerFeature(new ReduceSpreadModule());
 
                     // Exploit modules
                     service.registerFeature(new BoatCrasherModule());

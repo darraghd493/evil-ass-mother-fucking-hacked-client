@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class ModuleContainer extends Container {
     protected static final int BACKGROUND_COLOUR = ColourUtil.getInt(18, 18, 18);
 
-    public static final int CONTAINER_WIDTH = 120;
+    public static final int CONTAINER_WIDTH = 250;
 
     private final List<ModuleButtonElement> moduleButtonElements = new ObjectArrayList<>();
     private final ModuleType moduleType;

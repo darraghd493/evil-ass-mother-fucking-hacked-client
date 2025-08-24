@@ -18,6 +18,8 @@ import java.util.List;
  * @author darraghd493
  */
 public class ClickGuiScreen extends Screen {
+    private static final String CREDITS = "made with pure hatred by darraghd493";
+
     private final List<Container> containers = new ObjectArrayList<>();
 
     public ClickGuiScreen(Component title) {
@@ -40,6 +42,16 @@ public class ClickGuiScreen extends Screen {
         for (Container container : this.containers) {
             container.draw(this, guiGraphics, mouseX, mouseY, partialTick);
         }
+
+        // Draw my credits lol
+        guiGraphics.drawString(
+                this.font,
+                CREDITS,
+                guiGraphics.guiWidth() - this.font.width(CREDITS) - 2,
+                this.height - 10,
+                ColourUtil.getInt(255, 255, 255, 255),
+                false
+        );
     }
 
     @Override
